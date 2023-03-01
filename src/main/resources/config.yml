@@ -1,0 +1,56 @@
+#输入qq后请重启服务器 或/lilc yz重连
+qq: ''
+
+#装备效果将在登录/关闭背包后的5秒内刷新 因为高频率的刷新可能导致卡顿
+
+#读取lore的槽位 填写后关闭背包/切换物品就会读取一次
+#龙核槽位填: DragonCore#槽位名
+#萌芽槽位填: GermPlugin#槽位名
+#原版槽位填: Minecraft#槽位id(0-36)
+#梦星桐背包槽位填: APInventory#分页id#槽位id(0~53)  例如 APInventory#饰品#3
+#离渊背包槽位填: LyInventory#背包id#类型  例如 LyInventory#饰品#项链
+#主手填: Origin#MainHand
+#副手填: Origin#OffHand
+plugin-slot:
+  - 'Minecraft#8'
+
+#是否读取LySuitReload的套装内容
+Ly-suit: false
+
+#冷却时间变量 %lilc_cd-冷却组%
+config:
+  随便写不重复就行:
+    #匹配名字 关键词匹配 如不使用可以直接删除
+    name: ''
+    #包含以下任意lore即可触发 关键词匹配 指的是每行lore里包含这些关键词就匹配
+    #现已支持LySuitReload内的套装lore 可自动读取
+    lore:
+      - ''
+    #必须包含以下全部权限才可以触发 如果不使用则改成 permission: []
+    permission:
+      - 'lilc.什么都能用'
+    #触发条件 采用变量检测 因启用该检测 所以下方的hpRate在该版本(1.0.7)已取消
+    condition:
+      - '%player_level% > 1'
+    #触发几率 最低0.01% 可填写范围0.01 ~ 100
+    chance: 100
+    #可以自定义生效方式
+    #事件效果：
+    #attack造成伤害 damaged受伤 tick每秒一次 left左键交互 right右键交互
+    #sprint奔跑开始时 sneak蹲下开始时 death死亡时 respawn重生时 kill击杀时
+    #hpRate>0.5受伤时血量大于50% hpRate<0.5受伤时血量小于50%(已弃用)
+    #hold=3站住不动持续3秒(已弃用)
+    #shiftright蹲下右键 shiftleft蹲下左键
+    #holdright不是蹲着的情况下右键 holdleft不是蹲着的情况下左键
+    event:
+      - 'sprint'
+      - 'sneak'
+    commands:
+      - '[op]指令 %p'
+      - '[console]指令 %p'
+      - '[player]指令 %p'
+    message:
+      - '&7冷却组%cd-team进入了%time秒冷却'
+    #冷却支持PAPI变量和公式
+    cd: '10'
+    cd-team: '冷却组'
